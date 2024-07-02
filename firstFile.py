@@ -8,7 +8,8 @@ for index in range(4,8):
 
 
 
-def projectileMotion(angle,increment,initialVel, initialH, initialAcc,flightT, airResistance):
+
+def projectileMotion(angle,increment,initialVel, initialH, initialAcc,flightT, dragCoeff, csa, airDensity, airResistance):
     time = 0
     velocity = [0,0]
     position = [0,0]
@@ -20,7 +21,11 @@ def projectileMotion(angle,increment,initialVel, initialH, initialAcc,flightT, a
     posValY = []
     while time<flightT:
         if airResistance:
-            print("Placeholder")
+            absVel = [abs(velocity[0]),abs(velocity[1])]
+            acceleration[0] = acceleration[0] -  (1/2*dragCoeff*airDensity*csa*absVel[0]*velocity[0])
+            acceleration[1] = acceleration[1] - (1 / 2 * dragCoeff * airDensity * csa * absVel[1] * velocity[1])
+            velocity[0] = velocity[0] - increment * acceleration[0]
+
         else:
             acceleration[0] = 0
             acceleration[1] = 9.81
@@ -37,13 +42,18 @@ def projectileMotion(angle,increment,initialVel, initialH, initialAcc,flightT, a
         print(time)
         print("-----")
     plt.plot(posValX, posValY)
-    plt.title("projectile motion")
+    if airResistance:
+        plt.title("projectile motion(with drag)")
+    else:
+        plt.title("projectile motion")
     plt.xlabel("X-Axis")
     plt.ylabel("Y-Axis")
     plt.show()
 
 
-projectileMotion(pi/4,0.1,50,30,[0,9.81],7.98,False)
+projectileMotion(pi/4,0.1,50,30,[0,9.81],7.98, 0,0,0,False)
+# modeling values after avg tennis ball
+projectileMotion(pi/4,0.1,50,30,[0,9.81],7.98, 0.53,0.0154,0.1225,True)
 
 
 
