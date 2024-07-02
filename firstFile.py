@@ -20,6 +20,8 @@ def projectileMotion(angle,increment,initialVel, initialH, initialAcc,flightT, d
     posValX = []
     posValY = []
     while time<flightT:
+         # potential issues here with assuming that dragCoeff is constant when it isnt
+         #also unsure if acceleration is zeroing out like it should with drag
         if airResistance:
             absVel = [abs(velocity[0]),abs(velocity[1])]
             acceleration[0] = acceleration[0] -  ((0.5)*dragCoeff*airDensity*csa*absVel[0]*velocity[0])/mass
@@ -52,9 +54,9 @@ def projectileMotion(angle,increment,initialVel, initialH, initialAcc,flightT, d
     plt.show()
 
 
-projectileMotion(pi/4,0.1,50,30,[0,9.81],7.98, 0,0,0, 0.8, False)
+projectileMotion(pi/4,0.1,50,30,[0,-9.81],7.98, 0,0,0, 0.8, False)
 # modeling values after avg tennis ball
-projectileMotion(pi/4,0.1,50,30,[0,9.81],7.98, 0.53,0.0154,1.225, 0.8,True)
+projectileMotion(pi/4,0.1,50,30,[0,-9.81],7.98, 0.53,0.0154,1.225, 0.8,True)
 
 
 # testing
