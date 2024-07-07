@@ -31,7 +31,7 @@ def projectileMotion(
     posValY = []
     while time < flightT:
         # potential issues here with assuming that dragCoeff is constant when it isnt
-        # also unsure if acceleration is zeroing out like it should with drag
+        # also unsure if acceleration is zeroing out like it should with drag(fixed)
         if airResistance:
             absVel = [abs(velocity[0]), abs(velocity[1])]
             acceleration[0] = (
