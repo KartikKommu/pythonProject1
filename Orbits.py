@@ -5,29 +5,27 @@ from scipy.integrate import odeint
 
 # uses MKS Units
 
-G = 6.67 * (10 ^ -11)
+G = 6.67 * (10**-11)
 
 
-def orbitEulerCromer(
-    initVel, initTheta, radius, acceleration, satMass, ancMass, increment, length
-):
+def orbitEulerCromer(initVel, initRadius, satMass, ancMass, increment, length):
+
     t = 0.0
-    velocity = initVel
+    velocity = [0, initVel]
 
-    theta = initTheta
+    r = [initRadius, 0]
     thetaVal = []
-    acceleration = (
-        (-G * satMass * ancMass * radius) / abs(radius * radius * radius) * satMass
-    )
 
     while t < length:
 
         t += increment
 
-        velocity = velocity + increment * acceleration * (theta)
-        theta = theta + increment * velocity
+        acceleration = (-G * ancMass) * r / abs(r) ** 3
 
-        thetaVal.append(theta)
+        velocity = velocity + increment * acceleration
+        r = r + increment * velocity
+
+        thetaVal.append(r)
 
     ax = plt.subplot(111, projection="polar")
     ax.plot(thetaVal)
@@ -35,6 +33,4 @@ def orbitEulerCromer(
     plt.show()
 
 
-orbitEulerCromer(
-    12700, 0, 8.28784 * (10 ^ 11), 0.0, 5 * (10 ^ 14), 1.9891 * (10 ^ 30), 0.02, 1000
-)
+orbitEulerCromer(29806.07, 1.496 * (10**11), 5 * (10**14), 1.9891 * (10**30), 0.02, 40)
