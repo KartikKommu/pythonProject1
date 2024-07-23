@@ -11,24 +11,27 @@ G = 6.67 * (10**-11)
 def orbitEulerCromer(initVel, initRadius, satMass, ancMass, increment, length):
 
     t = 0.0
-    velocity = [0, initVel]
+    velocity = [0.0, initVel]
+    acceleration = [0.0, 0.0]
 
     r = [initRadius, 0]
-    thetaVal = []
+    ValX = []
+    ValY = []
 
     while t < length:
 
+        acceleration[0] = -(G * ancMass) * r[0] / abs(r[0]) ** 3
+
+        velocity[0] = velocity[0] + increment * acceleration[0]
+        velocity[1] = velocity[1] + increment * acceleration[1]
+        r[0] = r[0] + increment * velocity[0]
+        r[1] = r[1] + increment * velocity[1]
         t += increment
 
-        acceleration = (-G * ancMass) * r / abs(r) ** 3
+        ValX.append(r[0])
+        ValY.append(r[1])
 
-        velocity = velocity + increment * acceleration
-        r = r + increment * velocity
 
-        thetaVal.append(r)
-
-    ax = plt.subplot(111, projection="polar")
-    ax.plot(thetaVal)
 
     plt.show()
 
