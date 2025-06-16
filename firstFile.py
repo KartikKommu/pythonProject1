@@ -33,14 +33,13 @@ def projectileMotion(
         # potential issues here with assuming that dragCoeff is constant when it isnt
         # also unsure if acceleration is zeroing out like it should with drag(fixed)
         if airResistance:
-            absVel = [abs(velocity[0]), abs(velocity[1])]
+            absVel = sqrt((velocity[0] ** 2) + (velocity[1] ** 2))
             acceleration[0] = (
-                -((0.5) * dragCoeff * airDensity * csa * absVel[0] * velocity[0]) / mass
+                -((0.5) * dragCoeff * airDensity * csa * absVel * velocity[0]) / mass
             )
             acceleration[1] = (
                 -9.81
-                - ((0.5) * dragCoeff * airDensity * csa * absVel[1] * velocity[1])
-                / mass
+                - ((0.5) * dragCoeff * airDensity * csa * absVel * velocity[1]) / mass
             )
 
         else:
