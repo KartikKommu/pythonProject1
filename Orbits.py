@@ -25,7 +25,7 @@ def orbitEulerCromer(initVel, initRadius, ancMass, increment, length):
 
         magR = sqrt((r[0] ** 2) + (r[1] ** 2))
 
-        # fails if y starts at 0, must be a solution
+        # fails if y starts at 0, must be a solution(FIXED)
         acceleration[0] = -(G * ancMass) * r[0] / magR**3
         acceleration[1] = -(G * ancMass) * r[1] / magR**3
 
@@ -40,7 +40,7 @@ def orbitEulerCromer(initVel, initRadius, ancMass, increment, length):
         rVal.append(magR)
         thetaVal.append(atan2(r[1], r[0]))
 
-    # currently unable to properly plot Orbital data.
+    # currently unable to properly plot Orbital data.(FIXED)
     ax = plt.subplot(111, projection="polar")
 
     ax.plot(thetaVal, rVal)
@@ -51,12 +51,14 @@ orbitEulerCromer(2 * pi, 1, 1, 0.02, 4)
 
 
 # where f(x,t) is the right hand side of a DE dx/dt = f(x,t)
-# initConditions = [x,t]
-def rk4Method(function, increment, tMax, initConditions):
+
+
+def rk4Method(function, increment, tMax, initT):
     xData = []
     tData = []
-    x = initConditions[0]
-    t = initConditions[1]
+    # only works if x is not dependent on t AND x. unsure how to fix
+    x = function(0, initT)
+    t = initT
     while t < tMax:
         F1 = function(x, t)
         F2 = function(x + ((increment / 2) * F1), t + (increment / 2))
@@ -76,7 +78,7 @@ def fun(x, t):
     return fun
 
 
-x, t = rk4Method(fun, 0.1, 2, [-8, -2])
+x, t = rk4Method(fun, 0.1, 2, -2)
 plt.plot(t, x)
 plt.show()
 
@@ -88,10 +90,21 @@ def orbitRK4(initVel, initRadius, satMass, ancMass, increment, length):
     velocity = [0.0, initVel]
     acceleration = [0.0, 0.0]
 
-    r = [initRadius, 1]
+    def accel0(v, r):
+        accel0 = -(G * ancMass) * r[0] / magR**3
+        return accel0
+
+    def accel1(v, r):
+        accel1 = -(G * ancMass) * r[0] / magR**3
+        return accel1
+
+    r = [initRadius, 0]
     ValX = []
     ValY = []
+    rVal
+    thetaVal
 
     while t < length:
-        acceleration[0] = -(G * ancMass) * r[0] / abs(r[0]) ** 3
-        acceleration[1] = -(G * ancMass) * r[1] / abs(r[1]) ** 3
+        magR = sqrt((r[0] ** 2) + (r[1] ** 2))
+
+        velocity
