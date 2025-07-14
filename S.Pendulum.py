@@ -5,8 +5,6 @@ from math import *
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-from firstFile import projectileMotion
-
 
 def pendulumGraphEuler(angle, initialV, stringLen, time, increment):
     t = 0.0
