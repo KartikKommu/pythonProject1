@@ -57,9 +57,33 @@ y = np.exp(-(x / 10)) * np.sin(x)
 
 dydx = np.gradient(y, x)
 
-plt.plot(x, y)
-plt.plot(x, dydx)
+# plt.plot(x, y)
+# plt.plot(x, dydx)
 print(np.mean(y[(x >= 4) * (7 >= x)]))
 print(x[1:][0 > ((dydx[1:]) * (dydx[:-1]))])
 
+
 plt.show()
+
+x = np.arange(0, 10001, 1)
+
+sum = np.sum(x[((x % 4) != 0) * ((x % 7) != 0)])
+print(sum)
+
+
+theta = np.linspace(0, 2 * np.pi, 1000)
+radius = 1 + ((3 / 4) * np.sin(3 * theta))
+drdt = np.gradient(radius, theta)
+
+x = radius * np.cos(theta)
+y = radius * np.sin(theta)
+
+area = np.cumsum(radius) * (theta[1] - theta[0])
+arclength = np.cumsum(np.sqrt((radius**2) + (drdt**2))) * (theta[1] - theta[0])
+
+print(arclength)
+
+##plt.plot(theta, area)
+# plt.plot(theta, arclength)
+# plt.plot(x, y)
+# plt.show()
