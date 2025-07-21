@@ -29,10 +29,10 @@ def heatTransferOne(length, nodes, time, initialT, boundaryT, alpha):
 
             u[i] = ((alpha * dt * (w[i - 1] - (2 * w[i]) + w[i + 1])) / (dx**2)) + w[i]
 
-            counter += dt
-            pcm.set_array([u])
-            axis.set_title("Heat transfer, time: {:.3f}[s]".format(counter))
-            plt.pause(0.001)
+        counter += dt
+        pcm.set_array([u])
+        axis.set_title("Heat transfer, time: {:.3f}[s]".format(counter))
+        plt.pause(0.01)
 
     plt.show()
 
