@@ -77,10 +77,10 @@ def heatTransferTwo(length, nodes, time, initialT, boundaryT, alpha):
         counter += dt
         pcm.set_array(u)
         axis.set_title("2-D Heat transfer, time: {:.3f}[s]".format(counter))
-        plt.pause(0.01)
+        plt.pause(0.001)
 
     plt.show()
 
 
-heatTransferOne(50, 20, 4, 20, 100, 110)
-heatTransferTwo(50, 60, 4, 20, 100, 110)
+heatTransferOne(500, 200, 4, 20, 150, 110)
+heatTransferTwo(50, 200, 4, 20, 100, 110)
