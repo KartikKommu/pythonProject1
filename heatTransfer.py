@@ -83,4 +83,4 @@ def heatTransferTwo(length, nodes, time, initialT, boundaryT, alpha):
 
 
 heatTransferOne(500, 200, 4, 20, 150, 110)
-heatTransferTwo(50, 200, 4, 20, 100, 110)
+#heatTransferTwo(50, 200, 4, 20, 100, 110)
