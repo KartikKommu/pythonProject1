@@ -82,5 +82,5 @@ def heatTransferTwo(length, nodes, time, initialT, boundaryT, alpha):
     plt.show()
 
 
-heatTransferOne(500, 200, 4, 20, 150, 110)
-#heatTransferTwo(50, 200, 4, 20, 100, 110)
+heatTransferOne(50, 20, 4, 20, 100, 110)
+heatTransferTwo(50, 20, 4, 20, 100, 110)
