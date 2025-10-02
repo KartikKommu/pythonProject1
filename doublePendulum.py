@@ -5,7 +5,6 @@ from matplotlib import pyplot as plt
 from matplotlib import animation
 from matplotlib.animation import PillowWriter
 from mpl_toolkits.mplot3d import Axes3D
-from sympy import false
 
 
 def doublePendulum(l1_,l2_,m1_,m2_,t_total,interval,i_th1,i_z1,i_th2,i_z2):
@@ -53,13 +52,13 @@ def doublePendulum(l1_,l2_,m1_,m2_,t_total,interval,i_th1,i_z1,i_th2,i_z2):
     ##then we solve the system of DE's above
 
     def dSdt(S,t,g,m1,m2,l1,l2):
-        th1, z1, th2, z2 = S
+        th1inner, z1, th2inner, z2 = S
 
         return [
             dth1dt(z1),
-            dz1dt(t,g,m1,m2,l1,l2,th1,th2,z1,z2),
+            dz1dt(t,g,m1,m2,l1,l2,th1inner,th2inner,z1,z2),
             dth2dt(z2),
-            dz2dt(t,g,m1,m2,l1,l2,th1,th2,z1,z2),
+            dz2dt(t,g,m1,m2,l1,l2,th1inner,th2inner,z1,z2),
         ]
 
     #t = np.arange(0, t_total, interval)
